@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/register.css">
+  <title>RedSocial — Registro</title>
+</head>
+<body>
+
+  <div class="register-box">
+
+    <div class="logo">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <circle cx="9" cy="6" r="3" fill="#185fa5"/>
+        <path d="M3 15c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="#185fa5" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+
+    <h2>Crear cuenta</h2>
+    <p>Únete a la red. Es gratis y siempre lo será.</p>
+
+    <form action="/signup" method="post">
+
+      <div class="section-label">Datos personales</div>
+
+      <div class="row">
+        <div class="field">
+          <label for="nombre">Nombre(s)</label>
+          <input type="text" id="nombre" name="name" placeholder="Juan">
+        </div>
+        <div class="field">
+          <label for="apellido">Apellidos</label>
+          <input type="text" id="apellido" name="lastName" placeholder="Pérez">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="usuario">Nombre de usuario</label>
+        <input type="text" id="usuario" name="username" placeholder="@juanperez">
+      </div>
+
+      <div class="field">
+        <label for="nacimiento">Fecha de nacimiento</label>
+        <input type="date" id="nacimiento" name="birthDate">
+      </div>
+
+      <div class="field">
+        <label for="genero">Género</label>
+        <select id="genero" name="gender">
+          <option value="" disabled selected>Selecciona una opción</option>
+          <option>Masculino</option>
+          <option>Femenino</option>
+          <option>No binario</option>
+          <option>Prefiero no decirlo</option>
+        </select>
+      </div>
+
+      <hr class="divider">
+      <div class="section-label">Cuenta</div>
+
+      <div class="field">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" name="email" placeholder="tuemail@ejemplo.com">
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="pass">Contraseña</label>
+          <input type="password" id="pass" name="password" placeholder="••••••••">
+        </div>
+        <div class="field">
+          <label for="pass2">Confirmar</label>
+          <input type="password" id="pass2" name="passwordConfirm" placeholder="••••••••">
+        </div>
+      </div>
+
+      <button type="submit" class="btn">Crear cuenta</button>
+
+    </form>
+
+    <p class="terms">
+      Al registrarte aceptas los <a href="#">Términos de servicio</a>
+      y la <a href="#">Política de privacidad</a>.
+    </p>
+
+    <a href="/login" class="login-link">¿Ya tienes cuenta? <span>Inicia sesión</span></a>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f1efe8;
+    }
+
+    .restore-box {
+      background: #ffffff;
+      border: 0.5px solid #d3d1c7;
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #e6f1fb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .restore-box h2 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #1a1a1a;
+    }
+
+    .restore-box p {
+      font-size: 14px;
+      color: #888780;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 1.25rem;
+    }
+
+    .field label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 9px 12px;
+      font-size: 14px;
+      border: 0.5px solid #d3d1c7;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.15s;
+      color: #1a1a1a;
+      background: #ffffff;
+    }
+
+    .field input::placeholder {
+      color: #b4b2a9;
+    }
+
+    .field input:hover {
+      border-color: #888780;
+    }
+
+    .field input:focus {
+      border-color: #378add;
+      box-shadow: 0 0 0 3px rgba(55, 138, 221, 0.15);
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 9px 0;
+      background: #1a1a1a;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.85;
+    }
+
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 13px;
+      color: #888780;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .back-link:hover {
+      color: #1a1a1a;
+    }
