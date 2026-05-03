@@ -119,3 +119,26 @@
     .back-link:hover {
       color: #1a1a1a;
     }
+    .mensaje {
+    font-size: 13px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+.mensaje.exito {
+    background: #eaf5ea;
+    color: #2e7d32;
+    border: 0.5px solid #a5d6a7;
+}
+
+.mensaje.error {
+    background: #fdecea;
+    color: #c62828;
+    border: 0.5px solid #ef9a9a;
+}
+
+.hidden {
+    display: none;
+}

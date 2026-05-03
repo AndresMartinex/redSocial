@@ -20,7 +20,10 @@
     <h2>Crear cuenta</h2>
     <p>Únete a la red. Es gratis y siempre lo será.</p>
 
-    <form action="/signup" method="post">
+    <div id="error-msg" style="color:red; display:none;"></div>
+    <div id="success-msg" style="color:green; display:none;"></div>
+
+    <form id="signup-form">
 
       <div class="section-label">Datos personales</div>
 
@@ -84,9 +87,56 @@
       y la <a href="#">Política de privacidad</a>.
     </p>
 
-    <a href="/login" class="login-link">¿Ya tienes cuenta? <span>Inicia sesión</span></a>
+    <a href="login.html" class="login-link">¿Ya tienes cuenta? <span>Inicia sesión</span></a>
 
   </div>
+
+<script>
+  document.getElementById('signup-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const errorMsg = document.getElementById('error-msg');
+    const successMsg = document.getElementById('success-msg');
+    errorMsg.style.display = 'none';
+    successMsg.style.display = 'none';
+
+    const body = {
+      name: document.getElementById('nombre').value,
+      lastName: document.getElementById('apellido').value,
+      username: document.getElementById('usuario').value,
+      birthDate: document.getElementById('nacimiento').value,
+      gender: document.getElementById('genero').value,
+      email: document.getElementById('correo').value,
+      password: document.getElementById('pass').value,
+      passwordConfirm: document.getElementById('pass2').value
+    };
+
+    try {
+      const response = await fetch('http://localhost:8080/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        successMsg.style.display = 'block';
+        successMsg.textContent = 'Cuenta creada exitosamente. Redirigiendo...';
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 2000);
+      } else {
+        errorMsg.style.display = 'block';
+        errorMsg.textContent = data.error || 'Error al crear la cuenta';
+      }
+
+    } catch (error) {
+      errorMsg.style.display = 'block';
+      errorMsg.textContent = 'Error de conexión con el servidor';
+    }
+  });
+</script>
 
 </body>
 </html>
