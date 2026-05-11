@@ -117,5 +117,4 @@ public class PasswordResetService {
                     </p>
                 </div>
                 """.formatted(userName, resetLink);
-    }
-}
+}    }

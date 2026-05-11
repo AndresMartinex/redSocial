@@ -1,7 +1,5 @@
 package org.example.backend.rest;
 
-import java.util.Map;
-import java.util.Optional;
 import org.example.backend.entity.User;
 import org.example.backend.service.RolesService;
 import org.example.backend.service.SecurityService;
@@ -10,12 +8,11 @@ import org.example.backend.validators.SignUpFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -45,6 +42,7 @@ public class UsersRest {
 
             return ResponseEntity.ok(Map.of(
                     "message", "Login exitoso",
+                    "id",      user.getId(),
                     "email", user.getEmail(),
                     "name", user.getName(),
                     "role", user.getRole()
@@ -91,4 +89,24 @@ public class UsersRest {
                 "role", user.getRole()
         ));
     }
+
+    @GetMapping("/listar")
+    public ResponseEntity<?> getUsers(@RequestParam(required = false) String search) {
+        List<User> users = (search != null && !search.isEmpty())
+                ? usersService.searchUsers(search)
+                : usersService.getAllUsers();
+
+        List<Map<String, Object>> result = users.stream()
+                .map(user -> Map.of(
+                        "id",       (Object) user.getId(),
+                        "name",     user.getName(),
+                        "lastName", user.getLastName(),
+                        "username", user.getUsername(),
+                        "email",    user.getEmail()
+                ))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(result);
+    }
+
 }

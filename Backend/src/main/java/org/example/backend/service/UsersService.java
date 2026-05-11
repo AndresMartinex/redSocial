@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.example.backend.entity.User;
 import org.example.backend.repository.UsersRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,5 +25,21 @@ public class UsersService {
 
     public Optional<User> getUserByEmail(String email) {
         return usersRepository.findByEmail(email);
+    }
+
+    public Optional<User> getUserByUsername(String username) {
+        return usersRepository.findByUsername(username);
+    }
+
+    public List<User> getAllUsers() {
+        return usersRepository.findAll();
+    }
+
+    public List<User> searchUsers(String search) {
+        return usersRepository
+                .findByUsernameContainingIgnoreCaseOrNameContainingIgnoreCase(search, search);
+    }
+    public Optional<User> getUserById(Long id) {
+        return usersRepository.findById(id);
     }
 }

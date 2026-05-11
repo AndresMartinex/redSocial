@@ -71,10 +71,16 @@
         <div class="field">
           <label for="pass">Contraseña</label>
           <input type="password" id="pass" name="password" placeholder="••••••••">
+          <!-- Indicador de requisitos -->
+          <ul id="pass-rules" style="font-size:0.78rem; margin-top:6px; padding-left:18px; color:#888;">
+            <li id="rule-length">Mínimo 8 caracteres</li>
+            <li id="rule-number">Al menos un número</li>
+          </ul>
         </div>
         <div class="field">
           <label for="pass2">Confirmar</label>
           <input type="password" id="pass2" name="passwordConfirm" placeholder="••••••••">
+          <span id="match-msg" style="font-size:0.78rem; display:none;"></span>
         </div>
       </div>
 
@@ -92,6 +98,49 @@
   </div>
 
 <script>
+  const passInput = document.getElementById('pass');
+  const pass2Input = document.getElementById('pass2');
+  const ruleLength = document.getElementById('rule-length');
+  const ruleNumber = document.getElementById('rule-number');
+  const matchMsg = document.getElementById('match-msg');
+
+  // Validación en tiempo real de requisitos
+  passInput.addEventListener('input', () => {
+    const val = passInput.value;
+
+    if (val.length >= 8) {
+      ruleLength.style.color = 'green';
+      ruleLength.textContent = '✔ Mínimo 8 caracteres';
+    } else {
+      ruleLength.style.color = '#e74c3c';
+      ruleLength.textContent = '✘ Mínimo 8 caracteres';
+    }
+
+    if (/[0-9]/.test(val)) {
+      ruleNumber.style.color = 'green';
+      ruleNumber.textContent = '✔ Al menos un número';
+    } else {
+      ruleNumber.style.color = '#e74c3c';
+      ruleNumber.textContent = '✘ Al menos un número';
+    }
+
+    checkMatch();
+  });
+
+  // Validación de coincidencia
+  pass2Input.addEventListener('input', checkMatch);
+
+  function checkMatch() {
+    const match = passInput.value === pass2Input.value && pass2Input.value !== '';
+    matchMsg.style.display = pass2Input.value ? 'block' : 'none';
+    matchMsg.textContent = match ? '✔ Las contraseñas coinciden' : '✘ Las contraseñas no coinciden';
+    matchMsg.style.color = match ? 'green' : '#e74c3c';
+  }
+
+  function isPasswordValid(password) {
+    return password.length >= 8 && /[0-9]/.test(password);
+  }
+
   document.getElementById('signup-form').addEventListener('submit', async function(e) {
     e.preventDefault();
 
@@ -100,6 +149,22 @@
     errorMsg.style.display = 'none';
     successMsg.style.display = 'none';
 
+    const password = document.getElementById('pass').value;
+    const passwordConfirm = document.getElementById('pass2').value;
+
+    // Validación antes de enviar al backend
+    if (!isPasswordValid(password)) {
+      errorMsg.style.display = 'block';
+      errorMsg.textContent = 'La contraseña debe tener al menos 8 caracteres y un número.';
+      return;
+    }
+
+    if (password !== passwordConfirm) {
+      errorMsg.style.display = 'block';
+      errorMsg.textContent = 'Las contraseñas no coinciden.';
+      return;
+    }
+
     const body = {
       name: document.getElementById('nombre').value,
       lastName: document.getElementById('apellido').value,
@@ -107,8 +172,8 @@
       birthDate: document.getElementById('nacimiento').value,
       gender: document.getElementById('genero').value,
       email: document.getElementById('correo').value,
-      password: document.getElementById('pass').value,
-      passwordConfirm: document.getElementById('pass2').value
+      password,
+      passwordConfirm
     };
 
     try {
@@ -123,9 +188,7 @@
       if (response.ok) {
         successMsg.style.display = 'block';
         successMsg.textContent = 'Cuenta creada exitosamente. Redirigiendo...';
-        setTimeout(() => {
-          window.location.href = 'login.html';
-        }, 2000);
+        setTimeout(() => window.location.href = 'login.html', 2000);
       } else {
         errorMsg.style.display = 'block';
         errorMsg.textContent = data.error || 'Error al crear la cuenta';

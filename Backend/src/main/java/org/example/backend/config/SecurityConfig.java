@@ -60,7 +60,17 @@ public class SecurityConfig {
                                 "/api/password/validate-token",   // ← actualizar
                                 "/api/auth/signup",
                                 "/api/auth/login",
-                                "/api/auth/me"
+                                "/api/auth/me",
+                                "/api/auth/listar",
+                                "/api/invitations/pendientes",
+                                "/api/invitations/crear",
+                                "/api/invitations/accept/**",
+                                "/api/invitations/reject/**",
+                                "/api/invitations/amigos",        // ← agregar esto
+                                "/api/invitations/deleteById/**",
+                                "/api/posts/**",
+                                "/api/comments/**"
+
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

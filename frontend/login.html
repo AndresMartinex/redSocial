@@ -65,6 +65,8 @@
 
      if (response.ok) {
     localStorage.setItem('user', JSON.stringify(data));
+    localStorage.setItem('email', data.email);
+    localStorage.setItem('me', data.auth);
     window.location.href = 'profile.html';
 }else {
         errorMsg.style.display = 'block';

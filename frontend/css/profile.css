@@ -1,3 +1,6 @@
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +12,9 @@ body {
   background: #f1efe8;
 }
 
-/* NAVBAR */
+/* ============================================================
+   NAVBAR
+   ============================================================ */
 .navbar {
   background: #ffffff !important;
   border-bottom: 0.5px solid #d3d1c7;
@@ -63,6 +68,19 @@ body {
   margin: 4px 0;
 }
 
+.navbar-toggler {
+  border: 0.5px solid #d3d1c7;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* ============================================================
+   FORM CONTROLS (compartido)
+   ============================================================ */
 .form-control {
   font-size: 14px;
   border: 0.5px solid #d3d1c7;
@@ -82,6 +100,9 @@ body {
   box-shadow: 0 0 0 3px rgba(55, 138, 221, 0.15) !important;
 }
 
+/* ============================================================
+   BUSCADOR
+   ============================================================ */
 .btn-search {
   font-size: 14px;
   font-family: monospace, sans-serif;
@@ -100,17 +121,9 @@ body {
   border-color: #1a1a1a;
 }
 
-.navbar-toggler {
-  border: 0.5px solid #d3d1c7;
-  border-radius: 8px;
-  padding: 4px 8px;
-}
-
-.navbar-toggler:focus {
-  box-shadow: none;
-}
-
-/* PERFIL HEADER */
+/* ============================================================
+   PERFIL HEADER
+   ============================================================ */
 .profile-header {
   background: #ffffff;
   border: 0.5px solid #d3d1c7;
@@ -122,7 +135,7 @@ body {
   margin-bottom: 1.5rem;
 }
 
-/* AVATAR */
+/* Avatar */
 .avatar-wrap {
   position: relative;
   width: 90px;
@@ -182,7 +195,7 @@ input[type="file"] {
   display: none;
 }
 
-/* INFO PERFIL */
+/* Info de perfil */
 .profile-info {
   flex: 1;
 }
@@ -240,71 +253,46 @@ input[type="file"] {
   background: #f1efe8;
 }
 
-/* GRID PUBLICACIONES */
-.posts-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.post-card {
+/* ============================================================
+   TABS
+   ============================================================ */
+.feed-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 1rem;
   background: #ffffff;
   border: 0.5px solid #d3d1c7;
   border-radius: 10px;
-  overflow: hidden;
+  padding: 5px;
 }
 
-.post-img {
-  width: 100%;
-  aspect-ratio: 1/1;
-  background: #e6f1fb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.post-body {
-  padding: 10px 12px;
-}
-
-.post-body p {
-  font-size: 13px;
-  color: #444441;
-  margin: 0;
-  line-height: 1.4;
-}
-
-.post-body .post-meta {
-  font-size: 11px;
-  color: #b4b2a9;
-  margin-top: 6px;
-}
-/* TRIGGER CREAR POST */
-.create-trigger {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: #ffffff;
-  border: 0.5px solid #d3d1c7;
-  border-radius: 12px;
-  padding: 12px 14px;
-  margin-bottom: 1rem;
-  cursor: pointer;
-  transition: border-color 0.15s;
-}
-.create-trigger:hover {
-  border-color: #888780;
-}
-.create-trigger span {
+.tab-btn {
   flex: 1;
-  font-size: 14px;
-  color: #b4b2a9;
-}
-.trigger-icon {
+  font-size: 13px;
+  font-family: monospace, sans-serif;
+  border: none;
+  border-radius: 7px;
+  padding: 7px 14px;
+  cursor: pointer;
   color: #888780;
+  background: transparent;
+  transition: background 0.15s, color 0.15s;
 }
 
-/* CARD CREAR POST */
+.tab-btn:hover {
+  background: #f1efe8;
+  color: #1a1a1a;
+}
+
+.tab-btn.active {
+  background: #f1efe8;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+/* ============================================================
+   CARD CREAR POST
+   ============================================================ */
 .create-card {
   background: #ffffff;
   border: 0.5px solid #d3d1c7;
@@ -312,12 +300,14 @@ input[type="file"] {
   overflow: hidden;
   margin-bottom: 1rem;
 }
+
 .create-header {
   display: flex;
   align-items: flex-start;
   gap: 10px;
   padding: 12px 14px;
 }
+
 .create-header textarea {
   flex: 1;
   border: none;
@@ -330,33 +320,23 @@ input[type="file"] {
   line-height: 1.5;
   padding-top: 2px;
 }
+
 .create-header textarea::placeholder {
   color: #b4b2a9;
 }
+
 .img-preview-wrap {
   display: none;
   position: relative;
 }
+
 .img-preview-wrap img {
   width: 100%;
   max-height: 340px;
   object-fit: cover;
   display: block;
 }
-.img-remove {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: #1a1a1a;
-  border: none;
-  border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 .create-footer {
   display: flex;
   align-items: center;
@@ -364,10 +344,12 @@ input[type="file"] {
   padding: 8px 14px 12px;
   border-top: 0.5px solid #d3d1c7;
 }
+
 .create-tools {
   display: flex;
   gap: 4px;
 }
+
 .tool-btn {
   background: transparent;
   border: none;
@@ -382,10 +364,12 @@ input[type="file"] {
   gap: 5px;
   transition: background 0.15s, color 0.15s;
 }
+
 .tool-btn:hover {
   background: #f1efe8;
   color: #1a1a1a;
 }
+
 .btn-publish {
   font-size: 13px;
   font-family: monospace, sans-serif;
@@ -397,33 +381,49 @@ input[type="file"] {
   cursor: pointer;
   transition: opacity 0.15s;
 }
+
 .btn-publish:hover {
   opacity: 0.85;
 }
 
-/* FEED DE POSTS */
+/* ============================================================
+   MINI AVATAR
+   ============================================================ */
+.mini-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e6f1fb;
+  border: 0.5px solid #d3d1c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   FEED DE POSTS
+   ============================================================ */
 .posts-feed {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
+
 .post-card {
   background: #ffffff;
   border: 0.5px solid #d3d1c7;
   border-radius: 12px;
   overflow: hidden;
 }
+
 .post-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 12px 14px;
 }
-.post-user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+
 .post-avatar {
   width: 36px;
   height: 36px;
@@ -436,126 +436,155 @@ input[type="file"] {
   overflow: hidden;
   flex-shrink: 0;
 }
+
 .post-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.post-name {
+
+.post-author {
   font-size: 14px;
   font-weight: 500;
   color: #1a1a1a;
-  margin: 0;
+  display: block;
 }
-.post-time {
+
+.post-date {
   font-size: 12px;
   color: #b4b2a9;
-  margin: 0;
+  margin-left: 8px;
 }
-.post-menu {
-  position: relative;
+
+.post-actions {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
 }
-.menu-btn {
+
+.post-action-btn {
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 4px 8px;
   border-radius: 8px;
-  color: #888780;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1;
   transition: background 0.15s;
 }
-.menu-btn:hover {
+
+.post-action-btn:hover {
   background: #f1efe8;
 }
-.dropdown-post {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 100%;
-  background: #ffffff;
-  border: 0.5px solid #d3d1c7;
-  border-radius: 8px;
-  padding: 6px;
-  min-width: 130px;
-  z-index: 10;
+
+.post-content {
+  padding: 4px 14px 12px;
+  font-size: 14px;
+  color: #444441;
+  line-height: 1.5;
 }
-.dropdown-post.open {
-  display: block;
-}
-.dropdown-post a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  padding: 6px 10px;
-  font-size: 13px;
-  font-family: monospace, sans-serif;
-  color: #1a1a1a;
-  text-decoration: none;
-  border-radius: 6px;
-}
-.dropdown-post a:hover {
-  background: #f1efe8;
-}
-.dropdown-post a.danger {
-  color: #a32d2d;
-}
-.dropdown-post a.danger:hover {
-  background: #fcebeb;
-}
-.post-img img {
+
+.post-image {
   width: 100%;
   max-height: 400px;
   object-fit: cover;
   display: block;
 }
-.post-content {
-  padding: 10px 14px;
-  font-size: 14px;
-  color: #444441;
-  line-height: 1.5;
-}
-.post-footer {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+
+/* ============================================================
+   COMENTARIOS
+   ============================================================ */
+.post-comments {
   padding: 8px 14px 12px;
   border-top: 0.5px solid #d3d1c7;
 }
-.reaction-btn {
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.comment-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #f1efe8;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+.comment-text {
+  font-size: 13px;
+  color: #444441;
+  flex: 1;
+  line-height: 1.4;
+}
+
+.comment-delete-btn {
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 5px 10px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-family: monospace, sans-serif;
-  color: #888780;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  text-decoration: none;
-  transition: background 0.15s, color 0.15s;
-}
-.reaction-btn:hover {
-  background: #f1efe8;
-  color: #1a1a1a;
-}
-.reaction-btn.liked {
-  color: #a32d2d;
-}
-.reaction-btn.liked:hover {
-  background: #fcebeb;
-}
-.sep {
-  color: #d3d1c7;
-  font-size: 16px;
-  user-select: none;
+  color: #b4b2a9;
+  font-size: 12px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+  flex-shrink: 0;
 }
 
-/* ESTADO VACÍO */
+.comment-delete-btn:hover {
+  color: #a32d2d;
+  background: #fcebeb;
+}
+
+.comment-form {
+  display: flex;
+  gap: 6px;
+}
+
+.comment-input {
+  flex: 1;
+  font-size: 13px;
+  font-family: monospace, sans-serif;
+  border: 0.5px solid #d3d1c7;
+  border-radius: 8px;
+  padding: 5px 10px;
+  color: #1a1a1a;
+  background: #ffffff;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.comment-input::placeholder {
+  color: #b4b2a9;
+}
+
+.comment-input:focus {
+  border-color: #378add;
+}
+
+.comment-send-btn {
+  font-size: 13px;
+  font-family: monospace, sans-serif;
+  background: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.comment-send-btn:hover {
+  opacity: 0.85;
+}
+
+/* ============================================================
+   ESTADO VACÍO
+   ============================================================ */
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -567,26 +596,207 @@ input[type="file"] {
   border: 0.5px solid #d3d1c7;
   border-radius: 12px;
 }
+
 .empty-state p {
   font-size: 15px;
   font-weight: 500;
   color: #888780;
   margin: 0;
 }
+
 .empty-state span {
   font-size: 13px;
   color: #b4b2a9;
 }
 
-/* AVATAR mini */
-.mini-avatar {
-  width: 36px;
-  height: 36px;
+/* ============================================================
+   EMAIL EN PERFIL
+   ============================================================ */
+.profile-email {
+  font-size: 13px;
+  color: #888;
+  margin: 0 0 8px;
+}
+
+/* ============================================================
+   BOTÓN QUITAR IMAGEN PREVIEW
+   ============================================================ */
+.img-remove-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
   border-radius: 50%;
-  background: #e6f1fb;
-  border: 0.5px solid #d3d1c7;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+}
+
+/* ============================================================
+   MODALES
+   ============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Bootstrap d-none usa display:none; cuando el modal está visible
+   necesitamos flex, así que lo activamos quitando d-none desde JS
+   y el overlay hereda display:flex de esta regla: */
+.modal-overlay:not(.d-none) {
+  display: flex !important;
+}
+
+.modal-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 440px;
+  margin: 1rem;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.modal-title-text {
+  margin: 0;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #888;
+  line-height: 1;
+  padding: 0;
+}
+
+.modal-close-btn:hover {
+  color: #1a1a1a;
+}
+
+.modal-footer-row {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.label-sm {
+  font-size: 13px;
+  color: #666;
+}
+
+/* ============================================================
+   LISTA DE USUARIOS / AMIGOS
+   ============================================================ */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .main-grid { grid-template-columns: 1fr; }
+}
+
+.section-box {
+  background: #fff;
+  border: 0.5px solid #d3d1c7;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 1rem;
+}
+
+.users-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+}
+
+.user-card,
+.request-card,
+.friend-card {
+  background: #fff;
+  border: 0.5px solid #d3d1c7;
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.empty-text {
+  color: #888;
+  font-size: 14px;
+}
+
+/* ============================================================
+   BOTONES DE ACCIÓN (amigos)
+   ============================================================ */
+.btn-add-friend {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-add-friend:hover {
+  background-color: #222;
+}
+
+.btn-add-friend:disabled {
+  background-color: #666;
+  cursor: default;
+}
+
+.btn-remove-friend {
+  font-size: 12px;
+  font-family: monospace, sans-serif;
+  border: 0.5px solid #d3d1c7;
+  border-radius: 6px;
+  color: #a32d2d;
+  background: transparent;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-remove-friend:hover {
+  background: #fcebeb;
+  border-color: #a32d2d;
 }
