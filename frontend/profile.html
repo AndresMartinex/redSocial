@@ -213,8 +213,8 @@
     async function cargarPerfil() {
       try {
         const [perfilRes, amigosRes] = await Promise.all([
-          fetch(`http://localhost:8080/api/auth/me?email=${email}`),
-          fetch(`http://localhost:8080/api/invitations/amigos?email=${encodeURIComponent(email)}`)
+          fetch(`https://redsocial-back-cnns.onrender.com/api/auth/me?email=${email}`),
+          fetch(`https://redsocial-back-cnns.onrender.com/api/invitations/amigos?email=${encodeURIComponent(email)}`)
         ]);
         const perfil = await perfilRes.json();
         const amigos = amigosRes.ok ? await amigosRes.json() : [];
@@ -254,7 +254,7 @@
     // ── MIS PUBLICACIONES ─────────────────────────────────────────────────────
     async function cargarMisPublicaciones() {
       try {
-        const res   = await fetch(`http://localhost:8080/api/posts/misPublicaciones?email=${encodeURIComponent(email)}`);
+        const res   = await fetch(`https://redsocial-back-cnns.onrender.com/api/posts/misPublicaciones?email=${encodeURIComponent(email)}`);
         const posts = await res.json();
         document.getElementById('stat-posts').textContent = posts.length;
         renderPosts(posts, true);
@@ -264,7 +264,7 @@
     // ── PUBLICACIONES DE AMIGOS ───────────────────────────────────────────────
     async function cargarPublicacionesAmigos() {
       try {
-        const res   = await fetch(`http://localhost:8080/api/posts/amigos?email=${encodeURIComponent(email)}`);
+        const res   = await fetch(`https://redsocial-back-cnns.onrender.com/api/posts/amigos?email=${encodeURIComponent(email)}`);
         const posts = await res.json();
         renderPosts(posts, false);
       } catch (e) { console.error(e); }
@@ -335,7 +335,7 @@
       if (!content && !imagenBase64) { showError('Escribe algo o sube una imagen'); return; }
 
       try {
-        const res = await fetch('http://localhost:8080/api/posts/crear', {
+        const res = await fetch('https://redsocial-back-cnns.onrender.com/api/posts/crear', {
           method:  'POST',
           headers: { 'Content-Type': 'application/json' },
           body:    JSON.stringify({ userId, content, imageUrl: imagenBase64 })
@@ -387,7 +387,7 @@
       const content = document.getElementById('edit-post-content').value.trim();
       if (!content) { showError('El contenido no puede estar vacío'); return; }
       try {
-        const res = await fetch(`http://localhost:8080/api/posts/editar/${postEditandoId}`, {
+        const res = await fetch(`https://redsocial-back-cnns.onrender.com/api/posts/editar/${postEditandoId}`, {
           method:  'PUT',
           headers: { 'Content-Type': 'application/json' },
           body:    JSON.stringify({ userId, content })
@@ -406,7 +406,7 @@
     async function eliminarPost(id) {
       if (!confirm('¿Eliminar esta publicación?')) return;
       try {
-        const res = await fetch(`http://localhost:8080/api/posts/deleteById/${id}`, { method: 'DELETE' });
+        const res = await fetch(`https://redsocial-back-cnns.onrender.com/api/posts/deleteById/${id}`, { method: 'DELETE' });
         if (res.ok) {
           showSuccess('Publicación eliminada');
           cargarMisPublicaciones();
@@ -419,7 +419,7 @@
     // ── COMENTARIOS ───────────────────────────────────────────────────────────
     async function cargarComentarios(postId) {
       try {
-        const res      = await fetch(`http://localhost:8080/api/comments/post/${postId}`);
+        const res      = await fetch(`https://redsocial-back-cnns.onrender.com/api/comments/post/${postId}`);
         const comments = await res.json();
         const list     = document.getElementById(`comments-list-${postId}`);
         if (!list) return;
@@ -442,7 +442,7 @@
       const content = input.value.trim();
       if (!content) return;
       try {
-        const res = await fetch('http://localhost:8080/api/comments/crear', {
+        const res = await fetch('https://redsocial-back-cnns.onrender.com/api/comments/crear', {
           method:  'POST',
           headers: { 'Content-Type': 'application/json' },
           body:    JSON.stringify({ postId, userId, content })
@@ -456,7 +456,7 @@
 
     async function eliminarComentario(commentId, postId) {
       try {
-        const res = await fetch(`http://localhost:8080/api/comments/deleteById/${commentId}`, { method: 'DELETE' });
+        const res = await fetch(`https://redsocial-back-cnns.onrender.com/api/comments/deleteById/${commentId}`, { method: 'DELETE' });
         if (res.ok) cargarComentarios(postId);
       } catch (e) { console.error(e); }
     }

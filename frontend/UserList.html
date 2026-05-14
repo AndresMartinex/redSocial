@@ -104,8 +104,8 @@
     async function loadUsers(search = '') {
       try {
         const url = search
-          ? `http://localhost:8080/api/auth/listar?search=${encodeURIComponent(search)}`
-          : `http://localhost:8080/api/auth/listar`;
+          ? `https://redsocial-back-cnns.onrender.com/api/auth/listar?search=${encodeURIComponent(search)}`
+          : `https://redsocial-back-cnns.onrender.com/api/auth/listar`;
         const response = await fetch(url);
         if (!response.ok) throw new Error();
         renderUsers(await response.json());
@@ -144,7 +144,7 @@
       try {
         btn.disabled    = true;
         btn.textContent = 'Enviando...';
-        const response  = await fetch('http://localhost:8080/api/invitations/crear', {
+        const response  = await fetch('https://redsocial-back-cnns.onrender.com/api/invitations/crear', {
           method:  'POST',
           headers: { 'Content-Type': 'application/json' },
           body:    JSON.stringify({ senderId: sid, receiverId })
@@ -171,7 +171,7 @@
       if (!email) return;
       try {
         const response = await fetch(
-          `http://localhost:8080/api/invitations/pendientes?email=${encodeURIComponent(email)}`
+          `https://redsocial-back-cnns.onrender.com/api/invitations/pendientes?email=${encodeURIComponent(email)}`
         );
         if (!response.ok) return;
         renderRequests(await response.json());
@@ -204,7 +204,7 @@
       try {
         btn.disabled    = true;
         const response  = await fetch(
-          `http://localhost:8080/api/invitations/${action}/${requestId}`,
+          `https://redsocial-back-cnns.onrender.com/api/invitations/${action}/${requestId}`,
           { method: 'POST', headers: { 'Content-Type': 'application/json' } }
         );
         if (response.ok) {
@@ -226,7 +226,7 @@
       if (!email) return;
       try {
         const response = await fetch(
-          `http://localhost:8080/api/invitations/amigos?email=${encodeURIComponent(email)}`,
+          `https://redsocial-back-cnns.onrender.com/api/invitations/amigos?email=${encodeURIComponent(email)}`,
         );
         if (!response.ok) return;
         renderFriends(await response.json());
@@ -256,7 +256,7 @@
       try {
         btn.disabled = true;
         const response = await fetch(
-          `http://localhost:8080/api/invitations/deleteById/${invitationId}`,
+          `https://redsocial-back-cnns.onrender.com/api/invitations/deleteById/${invitationId}`,
           { method: 'DELETE' }
         );
         if (response.ok) {
